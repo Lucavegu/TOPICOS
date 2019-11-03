@@ -1,0 +1,31 @@
+#Escribe un script que baje 5 secuencias (algún loci corto, no un genoma) de una especie que te interese y
+#señala cuántas veces existe la secuencia "TGCA" en cada una de ellas. ¿Sabes qué hace esta secuencia?
+#This sequence is part of a reference transcriptome for Caligus rogercresseyi. >2.16 Billion PET 100bp reads from 6 different tissues (mixed, chalimus, copepodid, eggs, female, male) were assembled. The resulting set of 97,298 transcripts was reduced by retaining transcripts that were characterized as full-length, those that had a significant BLASTX match to the SwissProt or Gene Ontology (1e-5), or those that had a predicted open reading frame >= 300 bp. Vector sequences/adapters were trimmed. 44,089 transcripts >= 200 bp were finalized.
+
+##Assembly-Data-START##
+#Assembly Method	: Trinity r2013-02-25
+#Sequencing Technology	: Illumina
+##Assembly-Data-END##
+
+#Bajar datos de NCBI (en este caso serán contigs de secuencias de transcriptoma para Caligus rogercresseyi
+for i in GAZX01000001.1 GAZX01000002.1 GAZX01000003.1 GAZX01000004.1 GAZX01000005.1; do
+mkdir -p Caligus
+curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=$i" > Caligus/$i.fasta
+
+#Contar palabras "TGCA" de cada una de las secuencias fasta
+grep -oE "(TGCA)" Caligus/$i.fasta | wc -w
+
+#Revisar qué secuencias se bajaron
+grep ">" Caligus/$i.fasta
+
+#One liner to remove the description information from a fasta file and just keep the identifier
+perl -p -i -e 's/>(.+?) .+/>$1/g' sample1.fa
+
+
+Resolución Joel
+#descargar las 5 secuencias
+
+for i in AY330304 Y18944.1 EU586511 AH002906.2 JN998894.2; do
+curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=$i" > direjerf3/$i.fasta
+grep -oE "(TGCA)" direjerf3/$i.fasta
+done

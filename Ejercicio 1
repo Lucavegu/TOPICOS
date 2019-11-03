@@ -1,0 +1,5 @@
+#PLINK
+#FAM es tabla donde indica familia, individuo
+#Extraer la segunda columna (este archivo no contiene encabezados o headers)
+
+#awk '{print $2}' Maiz/nuevos_final.fam > output1.txt
