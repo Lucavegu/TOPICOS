@@ -1,0 +1,23 @@
+#Escribe un script que cree 4 directorios llamados PobA, PobB, PobC, PobD y dentro de cada uno de ellos un archivo de texto que diga
+#"Este es un individuo de la población x" donde x debe corresponder al nombre del directorio.
+
+#Crear los directorios PobA, PobB, PobC y PobD
+for i in {A..D};do
+mkdir Pob$i;
+#Crear archivo de texto con "Este es un individuo de la población x"
+echo "Este es un individuo de la población Pob$i" > ~/lvenegas/Pob$i/Pob$i.txt;
+done;
+
+#Para remover directorios PobA, PobB, PobC y PobD a la vez
+
+rm -r Pob*/
+
+Solución alternativa con cat
+"source"
+". ""
+Un loop realiza iteración para una variable
+Minimiza probabilidades de errores
+Unico argumento, número de acceso
+1 -> nombre del directorio como variables
+2 -> numero de acceso la segunda variables
+El script no se puede caer si ya hay directorios existentes, sobreescribe
